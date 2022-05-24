@@ -1,0 +1,38 @@
+/* Fonts
+Header,weights: 400, 500
+    font-family: 'Quicksand', sans-serif;  
+Body,weights: 300, 400 italic
+    font-family: 'Source Sans Pro', sans-serif; 
+*/
+
+:root {
+    --green-navbar: rgba(169, 199, 172, 1);
+    --dark-green-text: rgba(36, 61, 37, 1);
+    --lighter-green-text: rgba(95, 116, 100, 1);
+    --light-green: rgba(191, 216, 196, 0.5);
+    --green-homepage-div: rgba(191, 216, 196, 0.4);
+}
+
+/*Often used styles*/
+.zero-margin-padding {
+    margin: 0%;
+    padding: 0%;
+}
+
+/*Navbar*/
+nav {
+    background-color: var(--green-navbar);
+}
+
+.nav-icon {
+    font-size: 1.5rem;
+    padding-right: 0.2rem;
+    color: var(--dark-green-text);
+}
+
+.btn-navbar {
+    background-color: transparent;
+    border-radius: 0px;
+    border-color: transparent;
+    height: 100%;
+}
