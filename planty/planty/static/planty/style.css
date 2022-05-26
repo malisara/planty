@@ -6,6 +6,7 @@ Body,weights: 300, 400 italic
 */
 
 :root {
+    --plant-green: rgba(46, 139, 87, 1);
     --green-navbar: rgba(169, 199, 172, 1);
     --dark-green-text: rgba(36, 61, 37, 1);
     --lighter-green-text: rgba(95, 116, 100, 1);
@@ -17,6 +18,10 @@ Body,weights: 300, 400 italic
 .zero-margin-padding {
     margin: 0%;
     padding: 0%;
+}
+
+.text-center {
+    text-align: center;
 }
 
 /*Navbar*/
@@ -36,3 +41,64 @@ nav {
     border-color: transparent;
     height: 100%;
 }
+
+/*Register*/
+.form-title {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--plant-green);
+    font-weight: 500;
+    font-size: 3rem;
+    padding-bottom: 2rem;
+    text-align: center;
+}
+
+.requiredField {
+    font-family: 'Source Sans Pro', sans-serif;
+    margin-top: 1rem;
+    font-weight: 300;
+}
+
+.div-content-center {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.div-form-green-border {
+    background-color: #FFFFFF;
+    border: 2px solid;
+    border-color: var(--green-navbar);
+    border-radius: 1rem;
+    margin: 5rem 0rem;
+}
+
+.add-form-padding {
+    padding: 3rem;
+}
+
+.button-form {
+    border-color: var(--plant-green);
+    border-radius: 10px;
+    color: var(--plant-green);
+    background-color: transparent;
+    border: 2px solid;
+    padding: 0.5rem 30%;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin: 1rem 0rem;
+}
+
+.button-form:hover {
+    color: #FFFFFF;
+    background-color: var(--plant-green);
+}
+
+.login-link {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-style: italic;
+    font-weight: 200;
+    color: var(--plant-green);
+    font-size: 1.2rem;
+}
+
+/*TODO: add grey-ish background Login, Register*/

@@ -1,0 +1,39 @@
+{% extends "planty/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="div-content-center">
+    <div class="container div-form-green-border">
+
+        <div class="row align-items-start">
+            <div class="col-sm-6 zero-margin-padding ">
+                <!--TODO add a plant image-->
+                <img src="#" class="img-fluid image-in-form" alt="green plant image">
+            </div>
+
+            <div class="col-sm-6 add-form-padding">
+                <h1 class="form-title">Register</h1>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form|crispy}}
+
+                    <div class="container mt-4">
+                        <div class="row">
+                            <div class="col text-center">
+                                <button class="button-form" type="submit">Register</button>
+                                <p>Already have an account? <a href="{% url 'login' %}" class="login-link"> Log in</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock content %}
