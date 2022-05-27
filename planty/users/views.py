@@ -12,8 +12,7 @@ def register(request):
             messages.success(request, f"Account for {username} is created")
             return redirect('login')
         else:
-            messages.error(request, "Invalid form")
-            form = UserRegisterForm()
+            messages.error(request, "User creation unsuccessful")
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
