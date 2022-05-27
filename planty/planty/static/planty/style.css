@@ -8,6 +8,7 @@ Body,weights: 300, 400 italic
 :root {
     --plant-green: rgba(46, 139, 87, 1);
     --green-navbar: rgba(169, 199, 172, 1);
+    --gray-text: rgba(53, 75, 62, 1);
     --dark-green-text: rgba(36, 61, 37, 1);
     --lighter-green-text: rgba(95, 116, 100, 1);
     --light-green: rgba(191, 216, 196, 0.5);
@@ -23,6 +24,17 @@ Body,weights: 300, 400 italic
 .text-center {
     text-align: center;
 }
+
+.green-link {
+    text-decoration: none;
+    color: var(--plant-green);
+    font-weight: 400;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+/* TODO green-link :hover */
 
 /*Navbar*/
 nav {
@@ -42,12 +54,12 @@ nav {
     height: 100%;
 }
 
-/*Register*/
+/*Forms*/
 .form-title {
     font-family: 'Quicksand', sans-serif;
     color: var(--plant-green);
     font-weight: 500;
-    font-size: 3rem;
+    font-size: 2.5rem;
     padding-bottom: 2rem;
     text-align: center;
 }
@@ -93,12 +105,18 @@ nav {
     background-color: var(--plant-green);
 }
 
-.login-link {
-    font-family: 'Source Sans Pro', sans-serif;
-    font-style: italic;
-    font-weight: 200;
-    color: var(--plant-green);
-    font-size: 1.2rem;
-}
+
 
 /*TODO: add grey-ish background Login, Register*/
+
+/* Texts */
+
+.medium-italic-green-text {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--gray-text);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 0rem 4rem;
+}
