@@ -6,7 +6,9 @@ Body,weights: 300, 400 italic
 */
 
 :root {
+    --plant-green: rgba(46, 139, 87, 1);
     --green-navbar: rgba(169, 199, 172, 1);
+    --gray-text: rgba(53, 75, 62, 1);
     --dark-green-text: rgba(36, 61, 37, 1);
     --lighter-green-text: rgba(95, 116, 100, 1);
     --light-green: rgba(191, 216, 196, 0.5);
@@ -18,6 +20,21 @@ Body,weights: 300, 400 italic
     margin: 0%;
     padding: 0%;
 }
+
+.text-center {
+    text-align: center;
+}
+
+.green-link {
+    text-decoration: none;
+    color: var(--plant-green);
+    font-weight: 400;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+/* TODO green-link :hover */
 
 /*Navbar*/
 nav {
@@ -35,4 +52,71 @@ nav {
     border-radius: 0px;
     border-color: transparent;
     height: 100%;
+}
+
+/*Forms*/
+.form-title {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--plant-green);
+    font-weight: 500;
+    font-size: 2.5rem;
+    padding-bottom: 2rem;
+    text-align: center;
+}
+
+.requiredField {
+    font-family: 'Source Sans Pro', sans-serif;
+    margin-top: 1rem;
+    font-weight: 300;
+}
+
+.div-content-center {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.div-form-green-border {
+    background-color: #FFFFFF;
+    border: 2px solid;
+    border-color: var(--green-navbar);
+    border-radius: 1rem;
+    margin: 5rem 0rem;
+}
+
+.add-form-padding {
+    padding: 3rem;
+}
+
+.button-form {
+    border-color: var(--plant-green);
+    border-radius: 10px;
+    color: var(--plant-green);
+    background-color: transparent;
+    border: 2px solid;
+    padding: 0.5rem 30%;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin: 1rem 0rem;
+}
+
+.button-form:hover {
+    color: #FFFFFF;
+    background-color: var(--plant-green);
+}
+
+
+
+/*TODO: add grey-ish background Login, Register*/
+
+/* Texts */
+
+.medium-italic-green-text {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--gray-text);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 0rem 4rem;
 }
