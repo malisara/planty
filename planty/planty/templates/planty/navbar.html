@@ -14,7 +14,6 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                 <!--if user authenticated-->
-                <!--TODO authentication-->
                 {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="bi bi-search-heart nav-icon"></i></a>
@@ -33,7 +32,7 @@
                             data-bs-toggle="dropdown" aria-expanded="false"></button>
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">My Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'profile' request.user.pk %}">My Profile</a></li>
                             <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
                         </ul>
                     </div>

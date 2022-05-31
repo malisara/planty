@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import UserRegisterForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 
 def register(request):
@@ -21,8 +22,11 @@ def register(request):
 
 @login_required
 def profile(request, pk):
-    # TODO
-    return render(request, 'users/profile.html')
+    user_page_owner = User.objects.get(id=pk)
+    context = {
+        'user_page_owner': user_page_owner,
+    }
+    return render(request, 'users/profile.html', context)
 
 
 # TODO Update Profile
