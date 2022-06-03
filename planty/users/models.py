@@ -6,10 +6,8 @@ from planty.utils import crop_max_square
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='default.jpg',
+    image = models.ImageField(default='default-profile-picture.jpg',
                               upload_to='profile_pictures')
-    name = models.TextField(max_length=20)
-    surname = models.TextField(max_length=20)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

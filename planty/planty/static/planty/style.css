@@ -13,6 +13,7 @@ Body,weights: 300, 400 italic
     --lighter-green-text: rgba(95, 116, 100, 1);
     --light-green: rgba(191, 216, 196, 0.5);
     --green-homepage-div: rgba(191, 216, 196, 0.4);
+    --danger-red: rgb(255, 71, 71);
 }
 
 /*Often used styles*/
@@ -40,6 +41,21 @@ Body,weights: 300, 400 italic
 
 /* TODO green-link :hover */
 
+/*Body*/
+body {
+    min-height: 100vh;
+    margin: 0%;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    background-color: var(--green-navbar);
+    height: 2rem;
+    width: 100%;
+    margin-top: auto;
+}
+
 /*Navbar*/
 nav {
     background-color: var(--green-navbar);
@@ -63,9 +79,16 @@ nav {
     font-family: 'Quicksand', sans-serif;
     color: var(--plant-green);
     font-weight: 500;
-    font-size: 2.5rem;
+    font-size: 3rem;
     padding-bottom: 2rem;
     text-align: center;
+}
+
+label {
+    color: #494949;
+    font-style: italic;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .requiredField {
@@ -80,12 +103,16 @@ nav {
     justify-content: center;
 }
 
+.form-bg-color {
+    background-color: rgba(166, 204, 170, 0.1);
+}
+
 .div-form-green-border {
     background-color: #FFFFFF;
     border: 2px solid;
     border-color: var(--green-navbar);
     border-radius: 1rem;
-    margin: 5rem 0rem;
+    margin-top: 5rem;
 }
 
 .add-form-padding {
@@ -104,9 +131,41 @@ nav {
     margin: 1rem 0rem;
 }
 
-.button-form:hover {
+.button-form:hover,
+.button-sumbit:hover {
     color: #FFFFFF;
     background-color: var(--plant-green);
+}
+
+
+.button-sumbit {
+    border-color: var(--plant-green);
+    border-radius: 10px;
+    color: var(--plant-green);
+    background-color: transparent;
+    border: 2px solid;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 1rem 0rem;
+}
+
+
+.button-dismiss {
+    border-color: var(--danger-red);
+    border-radius: 10px;
+    color: var(--danger-red);
+    background-color: transparent;
+    border: 2px solid;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 1rem 0rem;
+}
+
+.button-dismiss:hover {
+    color: #FFFFFF;
+    background-color: var(--danger-red);
 }
 
 
@@ -155,6 +214,7 @@ a>.profile-pic {
 .profile-pic {
     border-radius: 50%;
     border: 0.5rem solid;
+    max-width: 100%;
 }
 
 .same-line-max-space {

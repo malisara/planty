@@ -9,4 +9,5 @@ def crop_center(img, cropped_width, cropped_height):
 
 # Crop the largest square
 def crop_max_square(img):
-    return crop_center(img, min(img.size), min(img.size))
+    min_dim = min(img.size)
+    return crop_center(img, min_dim, min_dim)

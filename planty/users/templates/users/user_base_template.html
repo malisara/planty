@@ -2,7 +2,7 @@
 
     <div class="image-grid">
         <a href="{% url 'profile' user_page_owner.id %}">
-            <img src="user_page_owner.profile.image.url" class="profile-pic" alt="Profile picture">
+            <img src="{{ user_page_owner.profile.image.url }}" class="profile-pic" alt="Profile picture">
         </a>
     </div>
 
@@ -13,7 +13,7 @@
         </a>
         <!--User can update profile if it's his profile page-->
         {% if user_page_owner == request.user %}
-        <a href="#update_profile" class="button-settings"><i class="bi bi-gear"></i></a>
+        <a href="{% url 'update_profile' %}" class="button-settings"><i class="bi bi-gear"></i></a>
         {% endif %}
     </div>
 
