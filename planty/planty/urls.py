@@ -25,16 +25,18 @@ urlpatterns = [
     path('', main_views.homepage, name="homepage"),
     path('register/', user_views.register, name="register"),
     # 'template_name' = name of custom template
-    path(
-        'login/',
-        auth_views.LoginView.as_view(template_name='users/login.html'),
-        name="login"),
-    path(
-        'logout/',
-        auth_views.LogoutView.as_view(template_name='users/logout.html'),
-        name="logout"),
-    path('profile/<int:pk>/', user_views.profile, name="profile"),
-    path('profile/update/', user_views.update_profile, name="update_profile"),
+    path('login/',
+         auth_views.LoginView.as_view(template_name='users/login.html'),
+         name="login"),
+    path('logout/',
+         auth_views.LogoutView.as_view(template_name='users/logout.html'),
+         name="logout"),
+    path('view_profile/<int:pk>/',
+         user_views.view_profile,
+         name="view_profile"),
+    path('profile/update/',
+         user_views.update_profile,
+         name="update_profile"),
 ]
 
 

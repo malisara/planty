@@ -21,12 +21,12 @@ def register(request):
 
 
 @login_required
-def profile(request, pk):
+def view_profile(request, pk):
     user_page_owner = User.objects.get(id=pk)
     context = {
         'user_page_owner': user_page_owner,
     }
-    return render(request, 'users/profile.html', context)
+    return render(request, 'users/view_profile.html', context)
 
 
 @login_required
@@ -37,10 +37,10 @@ def update_profile(request):
                                          instance=request.user.profile)
 
         if user_form.is_valid() and profile_form.is_valid():
+            profile_form.save(commit=False)
             user_form.save()
-            profile_form.save()
             messages.success(request, "Your account is updated")
-            return redirect('profile', pk=request.user.id)
+            return redirect('view_profile', pk=request.user.id)
 
         else:
             messages.error(request, "Error: Profile wasn't updated")

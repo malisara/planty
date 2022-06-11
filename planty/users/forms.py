@@ -28,8 +28,11 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class ProfileUpdateForm(forms.ModelForm):
-    image = forms.ImageField(required=False)
-
     class Meta:
         model = Profile
         fields = ['image']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['image'].required = False

@@ -1,14 +1,14 @@
 <div class="container">
 
     <div class="image-grid">
-        <a href="{% url 'profile' user_page_owner.id %}">
+        <a href="{% url 'view_profile' user_page_owner.id %}">
             <img src="{{ user_page_owner.profile.image.url }}" class="profile-pic" alt="Profile picture">
         </a>
     </div>
 
 
     <div class="same-line-max-space mt-5">
-        <a href="{% url 'profile' user_page_owner.id %}" class="make_nonlink">
+        <a href="{% url 'view_profile' user_page_owner.id %}" class="make_nonlink">
             <div class="profile_username">{{user_page_owner.username}}</div>
         </a>
         <!--User can update profile if it's his profile page-->
