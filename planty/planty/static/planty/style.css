@@ -283,3 +283,34 @@ a>.profile-pic {
     border-radius: 5px;
     min-height: 100vH;
 }
+
+/*Update profile*/
+
+.update-profile-grid {
+    background-color: #FFFFFF;
+    border: 2px solid;
+    border-color: var(--green-navbar);
+    border-radius: 1rem;
+    margin: 5rem 0rem;
+    padding-bottom: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 2fr 10fr;
+    grid-template-areas:
+        ". title ."
+        ". form ."
+}
+
+.grid-form-title {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--plant-green);
+    font-weight: 500;
+    font-size: 3rem;
+    grid-area: title;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.grid-form-layout {
+    grid-area: form;
+}
