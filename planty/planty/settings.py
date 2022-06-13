@@ -9,9 +9,11 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+# flake8: noqa
 
 from pathlib import Path
 from django.contrib.messages import constants as messages
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -136,3 +138,8 @@ LOGIN_REDIRECT_URL = '/'
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+# Full path to dir. where django stores uploaded files
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Public URL of that directory
+MEDIA_URL = '/media/'

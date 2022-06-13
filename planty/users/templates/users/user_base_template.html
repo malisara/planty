@@ -1,0 +1,41 @@
+<div class="container">
+
+    <div class="image-grid">
+        <a href="{% url 'view_profile' user_page_owner.id %}">
+            <img src="{{ user_page_owner.profile.image.url }}" class="profile-pic" alt="Profile picture">
+        </a>
+    </div>
+
+
+    <div class="same-line-max-space mt-5">
+        <a href="{% url 'view_profile' user_page_owner.id %}" class="make_nonlink">
+            <div class="profile_username">{{user_page_owner.username}}</div>
+        </a>
+        <!--User can update profile if it's his profile page-->
+        {% if user_page_owner == request.user %}
+        <a href="{% url 'update_profile' %}" class="button-settings"><i class="bi bi-gear"></i></a>
+        {% endif %}
+    </div>
+
+    <hr>
+
+    {% if user_page_owner.profile.name %}
+    <p class="user-information">{{user_page_owner.profile.name}}</p>
+    {% endif %}
+    {% if user_page_owner.profile.surname %}
+    <p class="user-information">{{user_page_owner.profile.surname}}</p>
+    {% endif %}
+    <a href="#review" class="make_nonlink">
+        <p class="user-information">
+            <i class="bi bi-star-fill orange-star"></i>
+            TODO: reviews
+        </p>
+    </a>
+    <!--user can write a review if it's not his page-->
+    {% if user_page_owner != request.user %}
+    <a href="#review" class="make_nonlink">
+        <div class="write-new-review-text">Write a New Review <i class="bi bi-pencil-square"></i></div>
+    </a>
+    {% endif %}
+
+</div>
