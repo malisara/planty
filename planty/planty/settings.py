@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'planty',
     'crispy_forms',
     'users.apps.UsersConfig',
+    'posts.apps.PostsConfig',
 ]
 
 MIDDLEWARE = [
