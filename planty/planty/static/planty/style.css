@@ -35,6 +35,11 @@ Body,weights: 300, 400 italic
     font-size: 1.1rem;
 }
 
+.green-link:hover {
+    color: var(--plant-green);
+    opacity: 0.8;
+}
+
 .make_nonlink {
     text-decoration: none;
 }
@@ -137,7 +142,6 @@ label {
     background-color: var(--plant-green);
 }
 
-
 .button-sumbit {
     border-color: var(--plant-green);
     border-radius: 10px;
@@ -149,7 +153,6 @@ label {
     font-size: 1rem;
     margin: 1rem 0rem;
 }
-
 
 .button-dismiss {
     border-color: var(--danger-red);
@@ -313,4 +316,38 @@ a>.profile-pic {
 
 .grid-form-layout {
     grid-area: form;
+}
+
+/* Detail page */
+
+.post-detail-data-section {
+    border: 2px solid;
+    border-color: var(--plant-green);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.product-title {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--plant-green);
+    font-weight: 500;
+}
+
+.post-author-username {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.post-description {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    font-weight: 300;
 }
