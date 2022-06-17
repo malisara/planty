@@ -1,10 +1,12 @@
-from django.views.generic import CreateView, DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
+from django.urls import reverse_lazy
 
 
 class NewPostView(LoginRequiredMixin, CreateView):
-    # Template name has to be: model_form.html, shares template with update view
+    # Template name has to be: model_form.html, shares template
+    # with update view
     model = Post
     fields = ['title', 'price', 'description', 'plant_image', 'plant_category']
 
@@ -18,10 +20,31 @@ class NewPostView(LoginRequiredMixin, CreateView):
 class PostDetailView(DetailView):
     # Template name has to be model_viewtype.html
     model = Post
-    #context_object_name = "post"
+    # Context_object_name = "post"
 
     # Add additinal context
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['user'] = self.request.user
         return context
+
+
+class UpdatePostView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ['title', 'price', 'description', 'plant_image', 'plant_category']
+
+    # Testing if user is post author
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.user
+
+
+class DeletePostView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+    # Needs a url to redirect after deleted
+    # TODO change url to explore page
+    success_url = reverse_lazy('login')
+
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.user

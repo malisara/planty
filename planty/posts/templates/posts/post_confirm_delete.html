@@ -1,0 +1,19 @@
+{% extends "planty/base.html" %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="container mt-4">
+        <legend class="mt-3  d-flex justify-content-center">Delete post</legend>
+        <p class=" d-flex justify-content-center">Are you sure you want to delete "{{ object.title }}?"</p>
+        <div class="row mt-2">
+            <div class="col d-flex justify-content-center">
+                <a href=" {% url 'view_profile' user.pk %}" class="button-sumbit me-2">Cancel</a>
+                <button class="button-dismiss" type="submit">Delete</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock content %}

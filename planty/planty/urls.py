@@ -19,7 +19,8 @@ from users import views as user_views
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
-from posts.views import NewPostView, PostDetailView
+from posts.views import (NewPostView, PostDetailView,
+                         UpdatePostView, DeletePostView)
 
 
 urlpatterns = [
@@ -39,7 +40,15 @@ urlpatterns = [
          user_views.update_profile,
          name="update_profile"),
     path('new-post/', NewPostView.as_view(), name='new_post'),
-    path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
+    path('post/<int:pk>/',
+         PostDetailView.as_view(),
+         name='post-detail'),
+    path('post/<int:pk>/update/',
+         UpdatePostView.as_view(),
+         name='post-update'),
+    path('post/<int:pk>/delete/',
+         DeletePostView.as_view(),
+         name='post-delete'),
 ]
 
 
