@@ -26,8 +26,8 @@
                 <!--TODO-->
                 <!--Only post author can edit/delete post-->
                 {% if post.user == request.user %}
-                <a href="{% url 'post-delete' post.pk %}"><button class="button-dismiss">Delete</button></a>
-                <a href="{% url 'post-update' post.pk %}"><button class="button-sumbit">Edit</button></a>
+                <a href="{% url 'post_delete' post.pk %}"><button class="button-dismiss">Delete</button></a>
+                <a href="{% url 'post_update' post.pk %}"><button class="button-sumbit">Edit</button></a>
                 {% else %}
                 <a href="#"><button class="button-sumbit">Message</button></a>
                 {% endif %}
