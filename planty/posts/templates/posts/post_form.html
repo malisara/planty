@@ -5,18 +5,16 @@
 
 <div class="div-content-center form-bg-color">
     <div class="update-profile-grid">
-        <h1 class="grid-form-title">Edit Profile</h1>
-
+        <h1 class="grid-form-title">Add / Edit Post</h1>
 
         <form method="POST" enctype="multipart/form-data" class="grid-form-layout">
             {% csrf_token %}
-            {{user_form|crispy}}
-            {{profile_form|crispy}}
+            {{form|crispy}}
 
             <div class="row mt-4">
                 <div class="col-sm text-end">
-                    <a href="{% url 'view_profile' user.pk %}" class="button-dismiss m-1">Dismiss</a>
-                    <button class="button-sumbit" type="submit">Save Changes</button>
+                    <a href="{% url 'view_profile' request.user.pk %}" class="button-dismiss m-1">Dismiss</a>
+                    <button class="button-sumbit" type="submit">Post</button>
                 </div>
             </div>
 

@@ -1,0 +1,40 @@
+{% extends "planty/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="row">
+
+        <div class="col-sm-6">
+            <img src="{{ post.plant_image.url }}" class="card-img-top" alt="post-plant-image">
+        </div>
+
+        <div class="col-sm-6 post-detail-data-section">
+            <div class="product-title">{{ post.title }}</div>
+            <a href="{% url 'view_profile' post.user.pk %}" class="green-link">
+                <div class="post-author-username">{{ post.user }}</div>
+            </a>
+            <div class="post-description">{{ post.description }}</div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-sm-12 text-end">
+                <!--TODO-->
+                <!--Only post author can edit/delete post-->
+                {% if post.user == request.user %}
+                <a href="{% url 'post_delete' post.pk %}"><button class="button-dismiss">Delete</button></a>
+                <a href="{% url 'post_update' post.pk %}"><button class="button-sumbit">Edit</button></a>
+                {% else %}
+                <a href="#"><button class="button-sumbit">Message</button></a>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}
