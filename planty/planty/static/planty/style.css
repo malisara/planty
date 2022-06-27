@@ -351,3 +351,118 @@ a>.profile-pic {
     padding: 1rem 2rem;
     font-weight: 300;
 }
+
+/* Explore Sidebar */
+.filter-unit-border {
+    border-bottom: 1px solid;
+    border-color: #FFFFFF;
+    border-radius: 5px;
+    padding: 1.5rem;
+}
+
+.filter-category-title {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--plant-green);
+    font-weight: 500;
+    font-size: 1.4rem;
+    padding-bottom: 0.5rem;
+    text-align: start;
+}
+
+.self-center {
+    align-self: center;
+    text-align: center;
+}
+
+
+/*Explore Main*/
+
+.hidden-info {
+    display: flex;
+    height: 300px;
+    width: 300px;
+    background-color: var(--light-green);
+    margin: 15px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.hidden-info>a {
+    align-self: center;
+    color: var(--plant-green);
+    font-family: ' Source Sans Pro', sans-serif;
+    font-size: 1.2rem;
+    text-decoration: none;
+    display: none;
+}
+
+.hidden-info:hover>a {
+    display: flex;
+    transition: ease-in;
+}
+
+.hidden-info:hover>img {
+    display: none;
+}
+
+.fade-in-animation:hover {
+    opacity: 1;
+    animation-name: fadeIn;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.2s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.rounded-product-image {
+    border-radius: 5px;
+    border: 1px solid;
+    border-color: var(--green-navbar);
+}
+
+.no-post-title {
+    font-family: 'Quicksand', sans-serif;
+    color: black;
+    font-weight: 400;
+    font-size: 1.8rem;
+    padding-bottom: 2rem;
+    text-align: center;
+}
+
+
+/* Pagination */
+
+.pagination {
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+.paginator-left-margin {
+    margin-left: 0.5rem;
+}
+
+.paginator-right-margin {
+    margin-right: 0.5rem;
+}
+
+
+/* Homepage */
+
+.homepage-category-title {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--plant-green);
+    font-weight: 400;
+    font-size: 3rem;
+    padding-bottom: 2rem;
+    text-align: center;
+}

@@ -1,0 +1,120 @@
+{% extends "planty/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+
+    <!--Filters-->
+    <div class="col-sm-2 pt-4 profile-data-section">
+        <div class="div-content-center">
+
+            <form action="" method="GET" style="width:100%;">
+                <!--Category-->
+                <div class="filter-unit-border">
+                    <div class="filter-category-title">Plant Category</div>
+                    {% for category in categories %}
+                    <input type="checkbox" id="category" name="category" value="{{category.0}}">
+                    <label for="category"> {{category.1}}</label><br>
+                    {% endfor %}
+                </div>
+
+                <!--Max Price-->
+                <!--works only on webkit browsers-->
+                <div class="filter-unit-border">
+                    <div class="filter-category-title">Max Price:</div>
+                    <input type="range" name="price_value" style="max-width : 100%;" max="{{ max_price }}"
+                        value="{{ max_price }}" oninput="this.nextElementSibling.value = this.value">
+                    <output>{{max_price }}</output> €
+                </div>
+
+                <!--Search bar-->
+                <div class="filter-unit-border pb-4">
+                    <div class="filter-category-title">Search</div>
+                    <input class="form-control me-2" type="Search" placeholder="Search" aria-label="Search"
+                        name="searched">
+                </div>
+
+                <!--Date Posted-->
+                <div class="filter-unit-border">
+                    <div class="filter-category-title">Date Posted</div>
+                    <input type="radio" id="date" name="date" value="day">
+                    <label for="date" class="filter-choice">Last 24h</label><br>
+                    <input type="radio" id="sdate" name="date" value="week">
+                    <label for="date" class="filter-choice">Last Week</label><br>
+                    <input type="radio" id="date" name="date" value="month">
+                    <label for="date" class="filter-choice">Last Month</label><br>
+                </div>
+
+                <!--Sort results-->
+                <div class="filter-unit-border">
+                    <div class="filter-category-title">Sort By</div>
+                    <input type="radio" id="sort-by" name="sort-by" value="older">
+                    <label for="sort-by" class="filter-choice">Oldest first</label><br>
+                    <input type="radio" id="sort-by" name="sort-by" value="newer">
+                    <label for="sort-by" class="filter-choice">Newest first</label><br>
+                    <input type="radio" id="sort-by" name="sort-by" value="higher">
+                    <label for="sort-by" class="filter-choice">Price High to Low</label><br>
+                    <input type="radio" id="sort-by" name="sort-by" value="lower">
+                    <label for="sort-by" class="filter-choice">Price Low to High</label><br>
+                </div>
+
+                <div class="self-center">
+                    <button class="button-sumbit" type="submit">Search
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!--Main part-->
+    <div class="col-sm-10 mt-5">
+        <div class="container">
+            <div class="homepage-category-title">Explore</div>
+
+            <div class="mt-4">
+                {% if page_obj %}
+                <div class="image-grid">
+                    {% for post in page_obj %}
+                    <div class="hidden-info fade-in-animation">
+                        <a href="{% url 'post_detail' post.id %}">
+                            <p>{{ post.title }},<br> {{ post.price }}€</p>
+                        </a>
+                        <img src="{{ post.plant_image.url }}" class="rounded-product-image" width="300" loading="lazy">
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="mt-5 no-post-title">No Posts</p>
+                {% endif %}
+            </div>
+
+            <!--Paginator-->
+            <div class="pagination">
+                {% if page_obj.has_previous %}
+                <a class="btn btn-outline-success mb-4" href="?page=1">&lt;&lt;</a>
+                <a class="btn btn-outline-success paginator-right-margin mb-4"
+                    href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                <a class="btn btn-success mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} <a
+                    class="btn btn-outline-success mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                    <a class="btn btn-outline-success paginator-left-margin mb-4"
+                        href="?page={{ page_obj.next_page_number }}">Next</a>
+                    <a class="btn btn-outline-success mb-4" href="?page={{ page_obj.paginator.num_pages }}">&gt;&gt;</a>
+                    {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}
