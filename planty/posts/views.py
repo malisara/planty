@@ -4,9 +4,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
 from django.urls import reverse_lazy
 from django.db.models import Q
-from django.db.models import Max
+from django.db.models import Max, Min
 from datetime import datetime, timedelta
 from django.core.paginator import Paginator
+from django.http.response import HttpResponseBadRequest
 
 POST_FORM_FIELDS = ['title', 'price',
                     'description', 'plant_image', 'plant_category']
@@ -50,14 +51,12 @@ class UpdatePostView(LoginRequiredMixin, UserIsAuthorMixin, UpdateView):
 class DeletePostView(LoginRequiredMixin, UserIsAuthorMixin, DeleteView):
     model = Post
     # Needs a url to redirect after deleted
-    # TODO change url to explore page
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('explore')
 
 
 def explore(request):
     if request.method == 'POST':
-        # TODO: return BadRequest
-        pass
+        return HttpResponseBadRequest()
 
     # Categories
     user_categories = request.GET.getlist('category')
@@ -91,6 +90,8 @@ def explore(request):
     # Price range
     max_aggregated_value = Post.objects.all().aggregate(Max('price'))
     max_price = max_aggregated_value['price__max']
+    min_aggregated_value = Post.objects.all().aggregate(Min('price'))
+    min_price = min_aggregated_value['price__min']
 
     user_max_price = request.GET.get('price_value', None)
 
@@ -143,6 +144,7 @@ def explore(request):
     context = {
         'categories': categories,
         'max_price': max_price,
+        'min_price': min_price,
         'page_obj': page_obj
     }
     return render(request, 'posts/explore.html', context)

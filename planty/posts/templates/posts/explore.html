@@ -23,9 +23,9 @@
                 <!--works only on webkit browsers-->
                 <div class="filter-unit-border">
                     <div class="filter-category-title">Max Price:</div>
-                    <input type="range" name="price_value" style="max-width : 100%;" max="{{ max_price }}"
-                        value="{{ max_price }}" oninput="this.nextElementSibling.value = this.value">
-                    <output>{{max_price }}</output> €
+                    <input type="range" name="price_value" style="max-width: 100%;" min={{min_price}} max={{max_price}}
+                        step="0.01" value={{max_price}} oninput="this.nextElementSibling.value = this.value">
+                    <output>{{max_price}}</output> €
                 </div>
 
                 <!--Search bar-->
