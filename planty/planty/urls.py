@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 from posts.views import (NewPostView, PostDetailView,
                          UpdatePostView, DeletePostView)
 
-from posts import views as post_viewes
+from posts import views as post_views
 
 
 urlpatterns = [
@@ -52,7 +52,7 @@ urlpatterns = [
          DeletePostView.as_view(),
          name='post_delete'),
     path('explore/',
-         post_viewes.explore,
+         post_views.explore,
          name="explore"),
 ]
 
