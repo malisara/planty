@@ -132,3 +132,4 @@ dmypy.json
 # Custom
 planty_venv/
 planty/media/profile_pictures/
+planty/media/plant_pics/
