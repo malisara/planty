@@ -38,12 +38,10 @@
                 <!--Date Posted-->
                 <div class="filter-unit-border">
                     <div class="filter-category-title">Date Posted</div>
-
                     {% for date_filter in date_filters %}
                     <input type="radio" id="date" name="date" value="{{date_filter.0}}">
                     <label for="date" class="filter-choice">{{date_filter.1}}</label><br>
                     {% endfor %}
-
                 </div>
 
                 <!--Sort results-->
@@ -56,23 +54,10 @@
 
                     {% endfor %}
 
-                    <!--
-                    <input type="radio" id="sort-by" name="sort-by" value="older">
-                    <label for="sort-by" class="filter-choice">Oldest first</label><br>
-                    <input type="radio" id="sort-by" name="sort-by" value="newer">
-                    <label for="sort-by" class="filter-choice">Newest first</label><br>
-                    <input type="radio" id="sort-by" name="sort-by" value="higher">
-                    <label for="sort-by" class="filter-choice">Price High to Low</label><br>
-                    <input type="radio" id="sort-by" name="sort-by" value="lower">
-                    <label for="sort-by" class="filter-choice">Price Low to High</label><br>
--->
-
                 </div>
-
                 <div class="self-center">
                     <button class="button-sumbit" type="submit">Search
                 </div>
-
             </form>
         </div>
     </div>
