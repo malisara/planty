@@ -21,4 +21,4 @@ class Reviews(models.Model):
     review = models.CharField(max_length=250)
     rating = models.IntegerField(default=5, validators=[
                                  MinValueValidator(1), MaxValueValidator(5)])
-    date = models.DateTimeField(default=datetime.now)
+    date = models.DateTimeField(default=datetime.now())
