@@ -1,0 +1,113 @@
+{% extends "planty/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-2 pt-5 profile-data-section">
+        {% include 'users/user_base_template.html' %}
+    </div>
+
+    <div class="col mt-5" style="display : flex;  flex-direction: column;">
+        <h1 Class="homepage-category-title">Reviews</h1>
+
+        {% if not all_reviews%}
+        <div class="explore-title">No Reviews Yet</div>
+        {% else %}
+        {% for review in all_reviews%}
+        <div class="single-review-flex-box">
+
+            <div class="col-sm-12 single-review-head">
+                <div class="flex-div">
+                    <p class="review-head-username">{{review.comment_author}}</p>
+                    <p class="review-head-date">({{review.date|date:"M, Y"}}) :</p>
+
+                    <!--Stars-->
+                    <p class="review-head-stars">
+                        {% if review.rating == 1 %}
+                        <i class="bi bi-star-fill orange-star"></i><i class="bi bi-star-fill black-star"></i><i
+                            class="bi bi-star-fill black-star"></i><i class="bi bi-star-fill black-star"></i><i
+                            class="bi bi-star-fill black-star"></i>
+                        {% elif review.rating == 2 %}
+                        <i class="bi bi-star-fill orange-star"></i><i class="bi bi-star-fill orange-star"></i><i
+                            class="bi bi-star-fill black-star"></i><i class="bi bi-star-fill black-star"></i><i
+                            class="bi bi-star-fill black-star"></i>
+                        {% elif review.rating == 3 %}
+                        <i class="bi bi-star-fill orange-star"></i><i class="bi bi-star-fill orange-star"></i><i
+                            class="bi bi-star-fill orange-star"></i><i class="bi bi-star-fill black-star"></i><i
+                            class="bi bi-star-fill black-star"></i>
+                        {% elif review.rating == 4 %}
+                        <i class="bi bi-star-fill orange-star"></i><i class="bi bi-star-fill orange-star"></i><i
+                            class="bi bi-star-fill orange-star"></i><i class="bi bi-star-fill orange-star"></i><i
+                            class="bi bi-star-fill black-star"></i>
+                        {% else %}
+                        <i class="bi bi-star-fill orange-star"></i><i class="bi bi-star-fill orange-star"></i><i
+                            class="bi bi-star-fill orange-star"></i><i class="bi bi-star-fill orange-star"></i><i
+                            class="bi bi-star-fill orange-star"></i>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            <div class="ps-4 single-review-body mb-4">
+                <div class="row">
+                    <div class="col-sm-3 p-1">
+                        <a href="{% url 'view_profile' review.comment_author.id %}">
+                            <img src="{{ review.comment_author.profile.image.url }}" class="comment-pic"
+                                alt="Profile picture">
+                        </a>
+                    </div>
+                    <div class="col-sm-9 p-2 flex-div">
+                        <p class="review-body-text">{{review.review}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    {% if user_profile_owner.id is not request.user.id %}
+    <div class="col-md-3 mt-5">
+        <div class="container">
+
+            {% if first_comment %}
+            <div class="new-review-title">Write a New Review</div>
+            {% else %}
+            <div class="new-review-title">Update Your Review</div>
+            {% endif %}
+
+            <div class="new-review-field">
+                <form method="POST" style="width:100%;">
+                    {% csrf_token %}
+                    <div class="mb-2">
+                        <label class="requiredField">Rating* </label> <br>
+                        {% if last_rating %}
+                        <input type="range" name="rating" min="1" max="5" value="{{last_rating}}" class="range-input"
+                            oninput="this.nextElementSibling.value = this.value">
+                        <output class="range-output">{{last_rating}}</output>
+                        {% else %}
+                        <input type="range" name="rating" min="1" max="5" value="5" class="range-input"
+                            oninput="this.nextElementSibling.value = this.value">
+                        <output class="range-output">5</output>
+                        {% endif %}
+                        <i class="bi bi-star-fill orange-star"></i>
+                    </div>
+                    {{review_form|crispy}}
+                    <div class="text-end mt-4">
+                        {% if first_comment %}
+                        <button class="button-sumbit" type="submit">Post</button>
+                        {% else %}
+                        <button class="button-sumbit" type="submit">Update Comment</button>
+                        {% endif %}
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock content %}

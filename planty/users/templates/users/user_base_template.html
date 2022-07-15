@@ -1,39 +1,46 @@
 <div class="container">
 
     <div class="image-grid">
-        <a href="{% url 'view_profile' user_page_owner.id %}">
-            <img src="{{ user_page_owner.profile.image.url }}" class="profile-pic" alt="Profile picture">
+        <a href="{% url 'view_profile' user_profile_owner.id %}">
+            <img src="{{ user_profile_owner.profile.image.url }}" class="profile-pic" alt="Profile picture">
         </a>
     </div>
 
 
     <div class="same-line-max-space mt-5">
-        <a href="{% url 'view_profile' user_page_owner.id %}" class="make_nonlink">
-            <div class="profile_username">{{user_page_owner.username}}</div>
+        <a href="{% url 'view_profile' user_profile_owner.id %}" class="make_nonlink">
+            <div class="profile_username">{{user_profile_owner.username}}</div>
         </a>
         <!--User can update profile if it's his profile page-->
-        {% if user_page_owner == request.user %}
+        {% if user_profile_owner == request.user %}
         <a href="{% url 'update_profile' %}" class="button-settings"><i class="bi bi-gear"></i></a>
         {% endif %}
     </div>
 
     <hr>
 
-    {% if user_page_owner.profile.name %}
-    <p class="user-information">{{user_page_owner.profile.name}}</p>
+    {% if user_profile_owner.first_name %}
+    <p class="user-information">{{user_profile_owner.first_name}}</p>
     {% endif %}
-    {% if user_page_owner.profile.surname %}
-    <p class="user-information">{{user_page_owner.profile.surname}}</p>
+    {% if user_profile_owner.last_name %}
+    <p class="user-information">{{user_profile_owner.last_name}}</p>
+    <hr>
     {% endif %}
-    <a href="#review" class="make_nonlink">
-        <p class="user-information">
-            <i class="bi bi-star-fill orange-star"></i>
-            TODO: reviews
+
+
+    {% if reviews_average %}
+    <a href="{% url 'reviews' user_profile_owner.pk %}" class="make_nonlink user-rating-avg">
+        <i class="bi bi-star-fill orange-star"></i>
+        {{reviews_average}} ({{num_all_reviews}} rates)
         </p>
     </a>
+    {% else %}
+    <p class="user-information">No rates yet</p>
+    {% endif %}
+
     <!--user can write a review if it's not his page-->
-    {% if user_page_owner != request.user %}
-    <a href="#review" class="make_nonlink">
+    {% if user_profile_owner != request.user %}
+    <a href="{% url 'reviews' user_profile_owner.pk %}" class="make_nonlink">
         <div class="write-new-review-text">Write a New Review <i class="bi bi-pencil-square"></i></div>
     </a>
     {% endif %}

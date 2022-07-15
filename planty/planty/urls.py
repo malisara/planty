@@ -41,6 +41,7 @@ urlpatterns = [
     path('profile/update/',
          user_views.update_profile,
          name="update_profile"),
+    path('profile/<int:pk>/reviews/', user_views.review, name="reviews"),
     path('new-post/', NewPostView.as_view(), name='new_post'),
     path('post/<int:pk>/',
          PostDetailView.as_view(),
