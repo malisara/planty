@@ -28,10 +28,10 @@
     {% endif %}
 
 
-    {% if reviews_average %}
+    {% if average_rating %}
     <a href="{% url 'reviews' user_profile_owner.pk %}" class="make_nonlink user-rating-avg">
         <i class="bi bi-star-fill orange-star"></i>
-        {{reviews_average}} ({{num_all_reviews}} rates)
+        {{average_rating}} ({{num_all_reviews}} rates)
         </p>
     </a>
     {% else %}

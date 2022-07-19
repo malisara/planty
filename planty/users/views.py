@@ -4,10 +4,11 @@ from .forms import (UserRegisterForm, UserUpdateForm,
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Reviews
+from .models import Review
 from datetime import datetime
 from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
+from .utils import user_reviews_statistics
 
 
 def register(request):
@@ -25,31 +26,14 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 
-def average_number_reviews(user_profile_owner):
-    all_reviews = Reviews.objects.filter(
-        comment_reciever_id=user_profile_owner.profile)
-    sum_ratings = 0
-    if len(all_reviews) > 0:
-        for review in all_reviews:
-            sum_ratings += review.rating
-
-        reviews_average = sum_ratings / len(all_reviews)
-        num_all_reviews = len(all_reviews)
-    else:
-        reviews_average = sum_ratings
-        num_all_reviews = 0
-
-    return reviews_average, num_all_reviews
-
-
 @login_required
 def view_profile(request, pk):
     user_profile_owner = User.objects.get(id=pk)
-    reviews_average, num_all_reviews = average_number_reviews(
+    average_rating, num_all_reviews = user_reviews_statistics(
         user_profile_owner)
     context = {
         'user_profile_owner': user_profile_owner,
-        'reviews_average': reviews_average,
+        'average_rating': average_rating,
         'num_all_reviews': num_all_reviews,
     }
     return render(request, 'users/view_profile.html', context)
@@ -83,12 +67,12 @@ def update_profile(request):
 
 
 @login_required
-def review(request, pk):
+def reviews(request, pk):
     user_profile_owner = User.objects.get(id=pk)
     try:
         already_commented = \
-            Reviews.objects.get(Q(comment_author=request.user) &
-                                Q(comment_reciever=user_profile_owner.profile))
+            Review.objects.get(Q(comment_author=request.user) &
+                               Q(comment_reciever=user_profile_owner.profile))
         first_comment = False
         review_form = UserReviewForm(instance=already_commented)
         last_rating = already_commented.rating
@@ -117,16 +101,16 @@ def review(request, pk):
         else:
             messages.error(request, "Ooops! Invalid review")
 
-    all_reviews = Reviews.objects.filter(
-        comment_reciever_id=user_profile_owner.profile).order_by('-date')
-    reviews_average, num_all_reviews = average_number_reviews(
+    all_reviews = Review.objects.filter(
+        comment_reciever=user_profile_owner.profile).order_by('-date')
+    average_rating, num_all_reviews = user_reviews_statistics(
         user_profile_owner)
 
     context = {
         'review_form': review_form,
         'user_profile_owner': user_profile_owner,
         'all_reviews': all_reviews,
-        'reviews_average': reviews_average,
+        'average_rating': average_rating,
         'num_all_reviews': num_all_reviews,
         'first_comment': first_comment,
         'last_rating': last_rating,

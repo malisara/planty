@@ -15,7 +15,7 @@ class Profile(models.Model):
         save_cropped_image(self.image.path, 200)
 
 
-class Reviews(models.Model):
+class Review(models.Model):
     comment_author = models.ForeignKey(User, on_delete=models.CASCADE)
     comment_reciever = models.ForeignKey(Profile, on_delete=models.CASCADE)
     review = models.CharField(max_length=250)
