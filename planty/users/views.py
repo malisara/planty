@@ -9,6 +9,7 @@ from datetime import datetime
 from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
 from .utils import user_reviews_statistics
+from django.http import HttpResponseNotFound
 
 
 def register(request):
@@ -68,7 +69,11 @@ def update_profile(request):
 
 @login_required
 def reviews(request, pk):
-    user_profile_owner = User.objects.get(id=pk)
+    try:
+        user_profile_owner = User.objects.get(id=pk)
+    except ObjectDoesNotExist:
+        return HttpResponseNotFound()
+
     try:
         already_commented = \
             Review.objects.get(Q(comment_author=request.user) &
