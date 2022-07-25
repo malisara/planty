@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, Review
 
 
 class UserRegisterForm(UserCreationForm):
@@ -36,3 +36,9 @@ class ProfileUpdateForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         self.fields['image'].required = False
+
+
+class UserReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['review']
