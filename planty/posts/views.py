@@ -4,7 +4,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
 from django.urls import reverse_lazy
 from django.db.models import Q, Max, Min
-from datetime import datetime, timedelta
+from django.utils import timezone
+from datetime import timedelta
 from django.core.paginator import Paginator
 from django.http.response import HttpResponseBadRequest
 
@@ -121,16 +122,16 @@ def explore(request):
         else:
             return HttpResponseBadRequest()
 
-        posts = posts.filter(date_posted__gte=datetime.now() -
+        posts = posts.filter(date_posted__gte=timezone.now() -
                              timedelta(days=date_filter))
 
     # Sort Results
     sort_by = request.GET.get('sort-by')
 
-    if sort_by is None or sort_by == SortBy.DATE_DESCENDING:
-        posts = posts.order_by('date_posted')
-    elif sort_by == SortBy.DATE_ASCENDING:
+    if sort_by is None or sort_by == SortBy.DATE_ASCENDING:
         posts = posts.order_by('-date_posted')
+    elif sort_by == SortBy.DATE_DESCENDING:
+        posts = posts.order_by('date_posted')
     elif sort_by == SortBy.PRICE_DESCENDING:
         posts = posts.order_by('-price')
     elif sort_by == SortBy.PRICE_ASCENDING:
