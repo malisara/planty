@@ -1,0 +1,15 @@
+{% extends "planty/base.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-2 zero-margin-padding">
+        <!--Sidebar-->
+        {% include "chats/chat-sidebar-base.html" %}
+        <!--No chat is open-->
+        <div class="col-sm-10 zero-margin-padding">
+            <div class="mt-5 homepage-category-description">Click on a message to open it</div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

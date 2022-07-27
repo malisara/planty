@@ -1,0 +1,57 @@
+<!--Header-->
+<a class="make_nonlink" href="{% url 'all_chats' %}">
+    <div class="flex-div chats-header-bg">
+        <img src="{{ request.user.profile.image.url }}" class="chat-users-image">
+        <div class="all-chats-title">Chats</div>
+    </div>
+</a>
+<!--Chat Message-->
+{% if list_last_messages_in_chat %}
+{% for last_message in list_last_messages_in_chat %}
+{% if request.user == last_message.chat.buyer %}
+<!-- User is buyer-->
+{% if last_message.read_message_buyer %}
+<a href="{% url 'chat' last_message.chat.id %}" class="make_nonlink">
+    <div class="grid-container one-chat-box">
+        <div class="grid-item-image"><img src="{{ last_message.chat.post.plant_image.url }}" class="chat-users-image">
+        </div>
+        <div class="grid-item-username username-read">{{last_message.chat.post.user.username}}</div>
+        <div class="grid-item-text text-read">{{last_message.short}}</div>
+    </div>
+</a>
+{% else %}
+<a href="{% url 'chat' last_message.chat.id %}" class="make_nonlink">
+    <div class="grid-container one-chat-box-unread">
+        <div class="grid-item-image"><img src="{{ last_message.chat.post.plant_image.url }}" class="chat-users-image">
+        </div>
+        <div class="grid-item-username username-unread">{{last_message.chat.post.user.username}}</div>
+        <div class="grid-item-text text-unread">{{last_message.short}}</div>
+    </div>
+</a>
+{% endif %}
+
+{% else %}
+<!--User is seller-->
+{% if last_message.read_message_seller %}
+<a href="{% url 'chat' last_message.chat.id %}" class="make_nonlink">
+    <div class="grid-container one-chat-box">
+        <div class="grid-item-image"><img src="{{ last_message.chat.post.plant_image.url }}" class="chat-users-image">
+        </div>
+        <div class="grid-item-username username-read">{{last_message.chat.buyer.username}}</div>
+        <div class="grid-item-text text-read">{{last_message.short}}</div>
+    </div>
+</a>
+{% else %}
+<a href="{% url 'chat' last_message.chat.id %}" class="make_nonlink">
+    <div class="grid-container one-chat-box-unread">
+        <div class="grid-item-image"><img src="{{ last_message.chat.post.plant_image.url }}" class="chat-users-image">
+        </div>
+        <div class="grid-item-username username-unread">{{last_message.chat.buyer.username}}</div>
+        <div class="grid-item-text text-unread">{{last_message.short}}</div>
+    </div>
+</a>
+{% endif %}
+{% endif %}
+{% endfor %}
+{% endif %}
+</div>

@@ -1,0 +1,13 @@
+{% extends "planty/base.html" %}
+{% block content %}
+
+<div class="container chat-container">
+    <div class="single-message-header">
+        {{post.user.username}}
+    </div>
+    <div class="container message-reply-field message-input">
+        {% include 'chats/message-form.html' %}
+    </div>
+</div>
+
+{% endblock content %}

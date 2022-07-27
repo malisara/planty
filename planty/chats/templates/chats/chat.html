@@ -1,0 +1,48 @@
+{% extends "planty/base.html" %}
+{% block content %}
+
+<div class="row align-items-start">
+    <div class="col-sm-2 zero-margin-padding">
+        {% include "chats/chat-sidebar-base.html" %}
+
+        <!--Empty column-->
+        <div class="col-sm-1"></div>
+
+        <!--Chat with all messages-->
+        <div class="col-sm-8 chat-container align-items-end">
+
+            {% if all_messages_in_chat %}
+            {% if request.user == buyer %}
+            <!--Chat header-->
+            <div class="single-message-header">{{post.user.username}}</div>
+            {% else %}
+            <div class="single-message-header">{{buyer.username}}</div>
+            {% endif %}
+            <div class="container  single-chat-main-container">
+                {% for message in all_messages_in_chat %}
+                <!--Sender's messages-->
+                {% if request.user == message.sender %}
+                <div class="single-reply-main-user-username">{{request.user}}</div>
+                <div class="single-reply-main-user">{{message.message_reply}}</div>
+                <!--Reciever's messages-->
+                {% else %}
+                <div class="single-reply-other-user-username"> {{message.sender}}</div>
+                <div class="single-reply-other-user">{{message.message_reply}}</div>
+                {% endif %}
+                {% endfor %}
+                {% else %}
+                <!--No messages-->
+                <div class="product-title">No messages</div>
+                {% endif %}
+            </div>
+
+            <!--Form-->
+            <div class="container message-reply-field message-input">
+                {% include 'chats/message-form.html' %}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
