@@ -1,14 +1,13 @@
 from django.shortcuts import redirect, render
 from .models import Message, Chat
 from .forms import MessageForm
-from django.utils import timezone
 from posts.models import Post
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseNotFound
-from .utils import return_list_last_messages_in_chat
+from .utils import all_chats_last_message
 
 
 @login_required
@@ -29,7 +28,6 @@ def first_message(request, pk):
                 chat = Chat(post=post_instance, buyer=request.user)
                 chat.save()
                 message = form.save(commit=False)
-                message.date = timezone.now()
                 message.chat = chat
                 message.read_message_seller = False
                 message.sender = request.user
@@ -49,23 +47,22 @@ def first_message(request, pk):
 @login_required
 def chat(request, pk):
     try:
-        relevant_chat = Chat.objects.get(Q(id=pk) & (
+        chat = Chat.objects.get(Q(id=pk) & (
             Q(buyer=request.user) | Q(post__user=request.user)))
     except ObjectDoesNotExist:
         return HttpResponseNotFound()
 
-    buyer = relevant_chat.buyer
-    post = relevant_chat.post
-    form = MessageForm()
-    all_messages_in_chat = Message.objects.filter(chat=relevant_chat)
-    list_last_messages_in_chat = return_list_last_messages_in_chat(request)
+    buyer = chat.buyer
+    post = chat.post
+    all_messages_in_chat = Message.objects.filter(chat=chat).order_by('date')
+    # Only needed for all chats in the sidebar
+    side_messages = all_chats_last_message(request)
 
     if request.method == "POST":
         form = MessageForm(request.POST)
         if form.is_valid():
             message = form.save(commit=False)
-            message.date = timezone.now()
-            message.chat = relevant_chat
+            message.chat = chat
             message.sender = request.user
             if request.user == buyer:
                 message.read_message_seller = False
@@ -76,27 +73,28 @@ def chat(request, pk):
             messages.error(
                 request, "Your message wasn't sent. Please try again.")
     else:  # Mark messages as read when user opens the chat
-        if request.user == buyer:
-            for message in all_messages_in_chat:
+        form = MessageForm()
+        for message in all_messages_in_chat:
+            if request.user == buyer:
                 message.read_message_buyer = True
-        else:
-            for message in all_messages_in_chat:
+                message.save()
+            else:
                 message.read_message_seller = True
-        message.save()
+                message.save()
 
     context = {
         'all_messages_in_chat': all_messages_in_chat,
         'form': form,
         'buyer': buyer,
         'post': post,
-        'list_last_messages_in_chat': list_last_messages_in_chat
+        'all_chats_last_message': side_messages
     }
 
-    return render(request, 'chats/chat.html', context)
+    return render(request, 'chats/all-chats-selected.html', context)
 
 
 @login_required
 def list_of_all_chats(request):  # When no chat is opened
-    list_last_messages_in_chat = return_list_last_messages_in_chat(request)
-    return render(request, 'chats/all-chats.html',
-                  ({'list_last_messages_in_chat': list_last_messages_in_chat}))
+    side_messages = all_chats_last_message(request)
+    return render(request, 'chats/all-chats-none-selected.html',
+                  ({'all_chats_last_message': side_messages}))

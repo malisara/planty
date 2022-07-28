@@ -1,13 +1,12 @@
-
 from .models import Message, Chat
 from django.db.models import Q
 
 
-def return_list_last_messages_in_chat(request):
+def all_chats_last_message(request):
     all_users_chats = Chat.objects.filter(Q(buyer=request.user) | Q(
         post__user=request.user))
 
-    list_last_messages_in_chat = []
+    last_messages = []
     for chat in all_users_chats:
         last_message = Message.objects.filter(
             chat=chat).order_by('-date')[0]
@@ -16,7 +15,8 @@ def return_list_last_messages_in_chat(request):
             last_message.short = last_message.message_reply[:15] + '...'
         else:
             last_message.short = last_message.message_reply
+        last_messages.append(last_message)
 
-        list_last_messages_in_chat.append(last_message)
-    list_last_messages_in_chat[::-1]
-    return list_last_messages_in_chat
+    def sort_by_date(message):
+        return message.date
+    return sorted(last_messages, key=sort_by_date, reverse=True)

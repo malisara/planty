@@ -687,6 +687,7 @@ a>.comment-pic {
     background-color: var(--light-green);
     border-bottom: 1px solid var(--light-green);
     padding: 0.8rem;
+    border-radius: 5px;
 }
 
 .one-chat-box-unread:hover {

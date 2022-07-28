@@ -6,8 +6,8 @@
     </div>
 </a>
 <!--Chat Message-->
-{% if list_last_messages_in_chat %}
-{% for last_message in list_last_messages_in_chat %}
+{% if all_chats_last_message %}
+{% for last_message in all_chats_last_message %}
 {% if request.user == last_message.chat.buyer %}
 <!-- User is buyer-->
 {% if last_message.read_message_buyer %}
