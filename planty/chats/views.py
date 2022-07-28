@@ -52,8 +52,6 @@ def chat(request, pk):
     except ObjectDoesNotExist:
         return HttpResponseNotFound()
 
-    buyer = chat.buyer
-    post = chat.post
     all_messages_in_chat = Message.objects.filter(chat=chat).order_by('date')
     # Only needed for all chats in the sidebar
     side_messages = all_chats_last_message(request)
@@ -64,7 +62,7 @@ def chat(request, pk):
             message = form.save(commit=False)
             message.chat = chat
             message.sender = request.user
-            if request.user == buyer:
+            if request.user == chat.buyer:
                 message.read_message_seller = False
             else:
                 message.read_message_buyer = False
@@ -75,18 +73,17 @@ def chat(request, pk):
     else:  # Mark messages as read when user opens the chat
         form = MessageForm()
         for message in all_messages_in_chat:
-            if request.user == buyer:
+            if request.user == chat.buyer:
                 message.read_message_buyer = True
-                message.save()
             else:
                 message.read_message_seller = True
-                message.save()
+            message.save()
 
     context = {
         'all_messages_in_chat': all_messages_in_chat,
         'form': form,
-        'buyer': buyer,
-        'post': post,
+        'buyer': chat.buyer,
+        'post': chat.post,
         'all_chats_last_message': side_messages
     }
 
