@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from datetime import datetime
+from django.utils import timezone
 from django.core.validators import MinValueValidator
 from django.urls import reverse
 from planty.utils import save_cropped_image
@@ -29,7 +29,7 @@ class Post(models.Model):
     )
     title = models.CharField(max_length=30)
     date_posted = models.DateTimeField(
-        default=datetime.now)
+        default=timezone.now)
     description = models.CharField(max_length=100)
     plant_image = models.ImageField(
         default='default_plant_image.jpg', upload_to='plant_pics')

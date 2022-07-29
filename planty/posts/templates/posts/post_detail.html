@@ -23,13 +23,12 @@
 
         <div class="row">
             <div class="col-sm-12 text-end">
-                <!--TODO-->
                 <!--Only post author can edit/delete post-->
                 {% if post.user == request.user %}
                 <a href="{% url 'post_delete' post.pk %}"><button class="button-dismiss">Delete</button></a>
                 <a href="{% url 'post_update' post.pk %}"><button class="button-sumbit">Edit</button></a>
                 {% else %}
-                <a href="#"><button class="button-sumbit">Message</button></a>
+                <a href="{% url 'first_message' post.pk %}"><button class="button-sumbit">Message</button></a>
                 {% endif %}
             </div>
         </div>

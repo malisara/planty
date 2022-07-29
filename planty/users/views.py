@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Review
-from datetime import datetime
+from django.utils import timezone
 from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
 from .utils import user_reviews_statistics
@@ -94,14 +94,14 @@ def reviews(request, pk):
                 # Override existing instance
                 already_commented.review = review_form.cleaned_data['review']
                 already_commented.rating = request.POST.get('rating')
-                already_commented.date = datetime.now()
+                already_commented.date = timezone.now()
                 already_commented.save()
             else:
                 review_instance = review_form.save(commit=False)
                 review_instance.comment_author = request.user
                 review_instance.comment_reciever = user_profile_owner.profile
                 review_instance.rating = request.POST.get('rating')
-                review_instance.date = datetime.now()
+                review_instance.date = timezone.now()
                 review_instance.save()
         else:
             messages.error(request, "Ooops! Invalid review")

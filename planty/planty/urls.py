@@ -23,6 +23,7 @@ from posts.views import (NewPostView, PostDetailView,
                          UpdatePostView, DeletePostView)
 
 from posts import views as post_views
+from chats import views as chat_views
 
 
 urlpatterns = [
@@ -55,6 +56,12 @@ urlpatterns = [
     path('explore/',
          post_views.explore,
          name="explore"),
+    path('chat/<int:pk>/', chat_views.chat,
+         name="chat"),  # Open one chat
+    path('message/<int:pk>/', chat_views.first_message,
+         name="first_message"),  # First message
+    path('all_chats/', chat_views.list_of_all_chats,
+         name="all_chats"),  # All chats, no chat is open
 ]
 
 

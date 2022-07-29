@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from planty.utils import save_cropped_image
-from datetime import datetime
+from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
@@ -21,4 +21,4 @@ class Review(models.Model):
     review = models.CharField(max_length=250)
     rating = models.IntegerField(default=5, validators=[
                                  MinValueValidator(1), MaxValueValidator(5)])
-    date = models.DateTimeField(default=datetime.now())
+    date = models.DateTimeField(default=timezone.now)
