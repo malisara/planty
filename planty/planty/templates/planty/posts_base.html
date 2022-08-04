@@ -1,0 +1,16 @@
+{% load static %}
+
+{% if posts %}
+<div class="image-grid">
+    {% for post in posts %}
+    <div class="hidden-info fade-in-animation">
+        <a href="{% url 'post_detail' post.id %}">
+            <p>{{ post.title }},<br>{{ post.price }}€</p>
+        </a>
+        <img src="{{ post.plant_image.url }}" class="rounded-product-image" width="300px">
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="mt-5 no-post-title">No Posts</p>
+{% endif %}

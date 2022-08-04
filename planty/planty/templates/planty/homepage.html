@@ -1,0 +1,131 @@
+{% extends "planty/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="div-content-center">
+    <div class="center-text-relative-to-image brand-title">Planty.</div>
+    <img src="{% static 'planty/cover-three-plants.jpg' %}" width="100%" alt="">
+</div>
+
+<div class="container">
+    <div class="standard-div-top-margin">
+        <div class="row flex-div">
+            <div class="col-sm self-center">
+                <a href="{% url 'explore' %}" class="make_nonlink">
+                    <h2 class="homepage-category-title">Explore all plants</h2>
+                </a>
+                <h5 class="homepage-category-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Reprehenderit fugiat incidunt nisi, error quibusdam natus vero accusantium earum, ea autem nemo
+                    iusto amet ab quod rem distinctio tempora excepturi? Exercitationem.</h5>
+                <a href="{% url 'explore' %}"><button class="button-big" type="button">Explore All</button></a>
+            </div>
+            <div class="col-sm self-left">
+                <img src="{% static 'planty/plant-in-a-pot.jpg' %}" class="img-fluid slightly-rounded-image" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="standard-div-top-margin">
+        <div class="row flex-div">
+            <div class="col-sm self-right">
+                <img src="{% static 'planty/palm.jpg' %}" class="img-fluid slightly-rounded-image" alt="">
+            </div>
+            <div class="col-sm self-center">
+                <a href="{% url 'explore' %}?category=O" class="make_nonlink">
+                    <h2 class="homepage-category-title ">Outdoor Plants</h2>
+                </a>
+                <h5 class="homepage-category-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Tempora adipisci ipsum nulla vel ipsa numquam? Nemo repudiandae modi eaque aliquid!</h5>
+                <a href="{% url 'explore' %}?category=O">
+                    <button class="button-big" type="button">Outdoor Plants</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="standard-div-top-margin">
+        <div class="row flex-div">
+            <div class="col-sm self-center">
+                <a href="{% url 'explore' %}?category=I" class="make_nonlink">
+                    <h2 class="homepage-category-title">Indoor Plants</h2>
+                </a>
+                <h5 class="homepage-category-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Doloribus eius omnis sunt natus voluptatum praesentium, cupiditate ratione unde nihil suscipit.</h5>
+                <a href="{% url 'explore' %}?category=I">
+                    <button class="button-big" type="button">Indoor Plants</button>
+                </a>
+            </div>
+            <div class="col-sm self-left">
+                <img src="{% static 'planty/aloa.jpg' %}" class="img-fluid slightly-rounded-image" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="standard-div-top-margin">
+        <div class="row flex-div">
+            <div class="col-sm self-right">
+                <img src="{% static 'planty/flower.jpg' %}" class="img-fluid slightly-rounded-image" alt="">
+            </div>
+            <div class="col-sm self-center">
+                <a href="{% url 'explore' %}?category=F" class="make_nonlink">
+                    <h2 class="homepage-category-title">Flowers</h2>
+                </a>
+                <h5 class="homepage-category-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Pariatur, eaque. Ipsa excepturi repellendus a delectus laboriosam earum tempora iure magnam.</h5>
+                <a href="{% url 'explore' %}?category=F"><button class="button-big" type="button">Flowers</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Waves-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="rgba(191, 216, 196, 0.4)" fill-opacity="1"
+        d="M0,224L48,197.3C96,171,192,117,288,133.3C384,149,480,235,576,240C672,245,768,171,864,149.3C960,128,1056,160,1152,176C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+    </path>
+</svg>
+<!--Recent posts-->
+<div style="background-color: rgba(191, 216, 196, 0.4);">
+    <h3 class="explore-title">Most Recent Posts</h3>
+    <div class="container">
+        <hr>
+        {% include 'planty/posts_base.html' %}
+    </div>
+    <div class="flex-container-buttons-homepage">
+        {% if posts %}
+        <a href="{% url 'explore' %}"><button class="explore-button-big" type="button">More Plants</button></a>
+        {% endif %}
+    </div>
+</div>
+<!--Waves-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="rgba(191, 216, 196, 0.4)" fill-opacity="1"
+        d="M0,64L48,80C96,96,192,128,288,122.7C384,117,480,75,576,74.7C672,75,768,117,864,128C960,139,1056,117,1152,112C1248,107,1344,117,1392,122.7L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z">
+    </path>
+</svg>
+<!--Show login/sign up option to users who aren't logged in-->
+{% if not user.is_authenticated %}
+<div class="container">
+    <div class="row flex-div">
+        <div class="col-sm self-right">
+            <img src="{% static 'planty/monstera.jpg' %}" class="img-fluid slightly-rounded-image" alt="">
+        </div>
+        <div class="col-sm self-center">
+            <h2 class="homepage-category-title">Join Today</h2>
+            <h5 class="homepage-category-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Ullam aut soluta quia provident, nihil amet?</h5>
+            <a href="{% url 'register' %}"><button class="button-big" type="button">Register</button></a>
+            <div class="mt-2"><a href="{% url 'login' %}" class="login-link">Already a member?</a></div>
+        </div>
+    </div>
+</div>
+<!--Waves-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="rgba(169, 199, 172, 1)" fill-opacity="1"
+        d="M0,128L48,144C96,160,192,192,288,213.3C384,235,480,245,576,245.3C672,245,768,235,864,213.3C960,192,1056,160,1152,170.7C1248,181,1344,235,1392,261.3L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+    </path>
+</svg>
+{% endif %}
+
+{% endblock content %}
