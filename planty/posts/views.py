@@ -128,7 +128,7 @@ def explore(request):
                              timedelta(days=date_filter))
 
     # Sort Results
-    sort_by = request.GET.get('sort-by')
+    sort_by = request.GET.get('sort')
 
     if sort_by is None or sort_by == SortBy.DATE_ASCENDING:
         posts = posts.order_by('-date_posted')
