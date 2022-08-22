@@ -1,5 +1,6 @@
-from .models import Message, Chat
 from django.db.models import Q
+
+from .models import Chat, Message
 
 
 def all_chats_last_message(request):

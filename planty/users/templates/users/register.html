@@ -1,4 +1,5 @@
 {% extends "planty/base.html" %}
+{% load static %}
 {% load crispy_forms_tags %}
 
 {% block content %}
@@ -8,8 +9,7 @@
 
         <div class="row align-items-start">
             <div class="col-sm-6 zero-margin-padding ">
-                <!--TODO add a plant image-->
-                <img src="#" class="img-fluid image-in-form" alt="green plant image">
+                <img src="{% static 'planty/register.jpg' %}" class="img-fluid image-in-form" alt="green plant image">
             </div>
 
             <div class="col-sm-6 add-form-padding">

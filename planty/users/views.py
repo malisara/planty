@@ -1,15 +1,16 @@
-from django.shortcuts import render, redirect
-from .forms import (UserRegisterForm, UserUpdateForm,
-                    ProfileUpdateForm, UserReviewForm)
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Review
-from django.utils import timezone
-from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
-from .utils import user_reviews_statistics
+from django.db.models import Q
 from django.http import HttpResponseNotFound
+from django.shortcuts import redirect, render
+from django.utils import timezone
+
+from .forms import (ProfileUpdateForm, UserRegisterForm,
+                    UserReviewForm, UserUpdateForm)
+from .models import Review
+from .utils import user_reviews_statistics
 
 
 def register(request):

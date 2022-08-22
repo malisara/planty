@@ -1,8 +1,9 @@
-from django.db import models
 from django.contrib.auth.models import User
-from django.utils import timezone
 from django.core.validators import MinValueValidator
+from django.db import models
 from django.urls import reverse
+from django.utils import timezone
+
 from planty.utils import save_cropped_image
 
 

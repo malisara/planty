@@ -1,7 +1,8 @@
 from django.db import models
-from posts.models import Post
-from users.models import User
 from django.utils import timezone
+
+from users.models import User
+from posts.models import Post
 
 
 class Chat(models.Model):

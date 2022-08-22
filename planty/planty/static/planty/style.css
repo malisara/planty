@@ -48,7 +48,6 @@ Body,weights: 300, 400 italic
     text-decoration: none;
 }
 
-/* TODO green-link :hover */
 
 /*Body*/
 body {
@@ -58,12 +57,19 @@ body {
     flex-direction: column;
 }
 
-/* footer {
+/*Footer*/
+footer {
     background-color: var(--green-navbar);
-    height: 2rem;
+    height: 2.5rem;
     width: 100%;
     margin-top: auto;
-} */
+}
+
+.footer-text-center {
+    text-align: center;
+    padding: 0.5rem;
+    font-family: 'Quicksand', sans-serif;
+}
 
 /*Navbar*/
 nav {
@@ -84,6 +90,7 @@ nav {
 }
 
 /*Forms*/
+
 .form-title {
     font-family: 'Quicksand', sans-serif;
     color: var(--plant-green);
@@ -121,7 +128,7 @@ label {
     border: 2px solid;
     border-color: var(--green-navbar);
     border-radius: 1rem;
-    margin-top: 5rem;
+    margin: 5rem 0;
 }
 
 .add-form-padding {
@@ -175,6 +182,9 @@ label {
     background-color: var(--danger-red);
 }
 
+.image-in-form {
+    border-radius: 1rem;
+}
 
 /* Texts */
 

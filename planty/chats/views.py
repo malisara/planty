@@ -1,12 +1,13 @@
-from django.shortcuts import redirect, render
-from .models import Message, Chat
-from .forms import MessageForm
-from posts.models import Post
-from django.db.models import Q
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
 from django.http import HttpResponseNotFound
+from django.shortcuts import redirect, render
+
+from .forms import MessageForm
+from .models import Chat, Message
+from posts.models import Post
 from .utils import all_chats_last_message
 
 
