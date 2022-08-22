@@ -1,4 +1,5 @@
 from datetime import timedelta
+
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.paginator import Paginator
 from django.db.models import Max, Min, Q
