@@ -34,13 +34,17 @@ if (Array.isArray(urlParams.category)) {
 }
 
 // Max Price
-var max_price_input = document.getElementById('price_value');
-max_price_input.value = urlParams.price_value;
-max_price_input.nextElementSibling.value = urlParams.price_value;
+if (typeof urlParams.price_value !== 'undefined') {
+    var max_price_input = document.getElementById('price_value');
+    max_price_input.value = urlParams.price_value;
+    max_price_input.nextElementSibling.value = urlParams.price_value;
+}
 
 // Search field  
-if (urlParams.searched !== '') {
-    document.getElementById('searched').value = urlParams.searched
+if (typeof urlParams.searched !== 'undefined') {
+    if (urlParams.searched !== '') {
+        document.getElementById('searched').value = urlParams.searched
+    }
 }
 
 // Sort by date    
