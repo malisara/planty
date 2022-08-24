@@ -1,4 +1,5 @@
 {% extends "planty/base.html" %}
+{% load static %}
 
 {% block content %}
 
@@ -8,8 +9,19 @@
     </div>
 
     <div class="col-sm-9 mt-5">
-        TODO
-    </div>
-</div>
 
-{% endblock content %}
+        <div class="container">
+            <!--Title-->
+            {% if user_profile_owner == request.user %}
+            <div class="homepage-category-title">My Profile</div>
+            {% else %}
+            <div class="homepage-category-title">{{user_profile_owner.username}}'s Ads</div>
+            {% endif %}
+
+            <!--All posts & paginator-->
+            {% include 'posts/display_all_posts.html' %}
+
+        </div>
+    </div>
+
+    {% endblock content %}

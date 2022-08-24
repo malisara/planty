@@ -68,47 +68,8 @@
     <div class="col-sm-10 mt-5">
         <div class="container">
             <div class="homepage-category-title">Explore</div>
-
-            <div class="mt-4">
-                {% if posts %}
-                <div class="image-grid">
-                    {% for post in posts %}
-                    <div class="hidden-info fade-in-animation">
-                        <a href="{% url 'post_detail' post.id %}">
-                            <p>{{ post.title }},<br> {{ post.price }}€</p>
-                        </a>
-                        <img src="{{ post.plant_image.url }}" class="rounded-product-image" width="300" loading="lazy">
-                    </div>
-                    {% endfor %}
-                </div>
-                {% else %}
-                <p class="mt-5 no-post-title">No Posts</p>
-                {% endif %}
-            </div>
-
-            <!--Paginator-->
-            <div class="pagination">
-                {% if posts.has_previous %}
-                <a class="btn btn-outline-success mb-4" href="?page=1">&lt;&lt;</a>
-                <a class="btn btn-outline-success paginator-right-margin mb-4"
-                    href="?page={{ posts.previous_page_number }}">Previous</a>
-                {% endif %}
-
-                {% for num in posts.paginator.page_range %}
-                {% if posts.number == num %}
-                <a class="btn btn-success mb-4" href="?page={{ num }}">{{ num }}</a>
-                {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %} <a
-                    class="btn btn-outline-success mb-4" href="?page={{ num }}">{{ num }}</a>
-                    {% endif %}
-                    {% endfor %}
-
-                    {% if posts.has_next %}
-                    <a class="btn btn-outline-success paginator-left-margin mb-4"
-                        href="?page={{ posts.next_page_number }}">Next</a>
-                    <a class="btn btn-outline-success mb-4" href="?page={{ posts.paginator.num_pages }}">&gt;&gt;</a>
-                    {% endif %}
-            </div>
-
+            <!--All posts & paginator-->
+            {% include 'posts/display_all_posts.html' %}
         </div>
     </div>
 
