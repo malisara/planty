@@ -41,10 +41,8 @@ if (typeof urlParams.price_value !== 'undefined') {
 }
 
 // Search field  
-if (typeof urlParams.searched !== 'undefined') {
-    if (urlParams.searched !== '') {
-        document.getElementById('searched').value = urlParams.searched
-    }
+if (typeof urlParams.searched !== 'undefined' && urlParams.searched !== '') {
+    document.getElementById('searched').value = urlParams.searched
 }
 
 // Sort by date    
