@@ -14,7 +14,7 @@
                 <div class="filter-unit-border">
                     <div class="filter-category-title">Plant Category</div>
                     {% for category in categories %}
-                    <input type="checkbox" id="category" name="category" value="{{category.0}}">
+                    <input type="checkbox" id="category_{{category.0}}" name="category" value="{{category.0}}">
                     <label for="category"> {{category.1}}</label><br>
                     {% endfor %}
                 </div>
@@ -24,7 +24,9 @@
                 <div class="filter-unit-border">
                     <div class="filter-category-title">Max Price:</div>
                     <input type="range" name="price_value" style="max-width: 100%;" min={{min_price}} max={{max_price}}
-                        step="0.01" value={{max_price}} oninput="this.nextElementSibling.value = this.value">
+                        step="0.01" value={{max_price}} oninput="this.nextElementSibling.value = this.value"
+                        id="price_value">
+
                     <output>{{max_price}}</output> €
                 </div>
 
@@ -32,14 +34,14 @@
                 <div class="filter-unit-border pb-4">
                     <div class="filter-category-title">Search</div>
                     <input class="form-control me-2" type="Search" placeholder="Search" aria-label="Search"
-                        name="searched">
+                        name="searched" id="searched">
                 </div>
 
                 <!--Date Posted-->
                 <div class="filter-unit-border">
                     <div class="filter-category-title">Date Posted</div>
                     {% for date_filter in date_filters %}
-                    <input type="radio" id="date" name="date" value="{{date_filter.0}}">
+                    <input type="radio" id="date_{{date_filter.0}}" name="date" value="{{date_filter.0}}">
                     <label for="date" class="filter-choice">{{date_filter.1}}</label><br>
                     {% endfor %}
                 </div>
@@ -49,7 +51,7 @@
                     <div class="filter-category-title">Sort By</div>
                     {% for sort_option in sort_by %}
 
-                    <input type="radio" id="sort-by" name="sort-by" value="{{sort_option.0}}">
+                    <input type="radio" id="sort-by_{{sort_option.0}}" name="sort" value="{{sort_option.0}}">
                     <label for="sort-by" class="filter-choice">{{sort_option.1}}</label><br>
 
                     {% endfor %}
@@ -113,3 +115,7 @@
 </div>
 
 {% endblock content %}
+
+{% block javascript %}
+<script type="text/javascript" src="{% static 'posts/explore.js' %}"></script>
+{% endblock javascript %}
