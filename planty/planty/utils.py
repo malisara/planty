@@ -33,7 +33,7 @@ def save_cropped_image(image_path, cropped_dim):
     img_cropped.save(image_path)
 
 
-def paginate(request, posts, number_posts):
-    paginator = Paginator(posts, number_posts)
+def paginate(request, instances, number_instances):
+    paginator = Paginator(instances, number_instances)
     page_number = request.GET.get('page')
     return paginator.get_page(page_number)
