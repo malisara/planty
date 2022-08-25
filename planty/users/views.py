@@ -10,6 +10,8 @@ from django.utils import timezone
 from .forms import (ProfileUpdateForm, UserRegisterForm,
                     UserReviewForm, UserUpdateForm)
 from .models import Review
+from planty.utils import paginate
+from posts.models import Post
 from .utils import user_reviews_statistics
 
 
@@ -33,10 +35,16 @@ def view_profile(request, pk):
     user_profile_owner = User.objects.get(id=pk)
     average_rating, num_all_reviews = user_reviews_statistics(
         user_profile_owner)
+    posts = Post.objects.filter(
+        user=user_profile_owner).order_by('-date_posted')
+    # Paginator
+    posts = paginate(request, posts, 9)
+
     context = {
         'user_profile_owner': user_profile_owner,
         'average_rating': average_rating,
         'num_all_reviews': num_all_reviews,
+        'posts': posts,
     }
     return render(request, 'users/view_profile.html', context)
 

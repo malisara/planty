@@ -1,7 +1,6 @@
 from datetime import timedelta
 
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.core.paginator import Paginator
 from django.db.models import Max, Min, Q
 from django.http.response import HttpResponseBadRequest
 from django.shortcuts import render
@@ -10,6 +9,7 @@ from django.utils import timezone
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 
 from .models import Post
+from planty.utils import paginate
 
 POST_FORM_FIELDS = ['title', 'price',
                     'description', 'plant_image', 'plant_category']
@@ -142,9 +142,7 @@ def explore(request):
         return HttpResponseBadRequest()
 
     # Pagination
-    paginator = Paginator(posts, 12)
-    page_number = request.GET.get('page')
-    posts = paginator.get_page(page_number)
+    posts = paginate(request, posts, 12)
 
     context = {
         'categories': Post.PLANT_CATEGORIES,

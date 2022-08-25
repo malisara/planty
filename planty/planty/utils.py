@@ -1,4 +1,5 @@
 from PIL import Image
+from django.core.paginator import Paginator
 
 IGNORED_IMAGES = ['default_plant_image.jpg', 'default-profile-picture.jpg']
 
@@ -30,3 +31,9 @@ def save_cropped_image(image_path, cropped_dim):
         img_cropped.thumbnail((cropped_dim, cropped_dim))
 
     img_cropped.save(image_path)
+
+
+def paginate(request, instances, number_instances):
+    paginator = Paginator(instances, number_instances)
+    page_number = request.GET.get('page')
+    return paginator.get_page(page_number)
