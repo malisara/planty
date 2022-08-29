@@ -21,3 +21,32 @@ def all_chats_last_message(request):
     def sort_by_date(message):
         return message.date
     return sorted(last_messages, key=sort_by_date, reverse=True)
+
+
+def user_has_unread_message_context_processor(request):
+    unread = False
+    if request.user.is_authenticated:
+        unread_buyer = has_unread_message(
+            request,
+            Chat.objects.filter(buyer=request.user),
+            user_is_buyer=True,
+        )
+        unread_seller = has_unread_message(
+            request,
+            Chat.objects.filter(post__user=request.user),
+            user_is_buyer=False,
+        )
+        unread = unread_buyer or unread_seller
+    return {'has_unread_messages': unread}
+
+
+def has_unread_message(request, chats, user_is_buyer):
+    for chat in chats:
+        messages = Message.objects.filter(
+            chat=chat).exclude(sender=request.user)
+        for message in messages:
+            if user_is_buyer and not message.read_message_buyer:
+                return True
+            elif not user_is_buyer and not message.read_message_seller:
+                return True
+    return False

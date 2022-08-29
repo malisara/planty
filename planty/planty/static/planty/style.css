@@ -774,14 +774,16 @@ a>.comment-pic {
 .username-unread {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 1rem;
-    font-weight: 300;
+    font-weight: 400;
+    font-style: italic;
     color: #000000;
 }
 
 .text-unread {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 1.1rem;
-    font-weight: 300;
+    font-weight: 400;
+    font-style: italic;
     color: #000000;
 }
 
