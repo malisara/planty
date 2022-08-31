@@ -23,9 +23,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'new_post' %}"><i class="bi bi-plus-square nav-icon"></i></a>
                 </li>
+
+                {% if has_unread_messages %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'all_chats' %}"><i
+                            class="bi bi-chat-left-dots-fill nav-icon"></i></a>
+                </li>
+                {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'all_chats' %}"><i class="bi bi-chat-square-dots nav-icon"></i></a>
                 </li>
+                {% endif%}
 
                 <!--profile dropdown-->
                 <li>
