@@ -2,11 +2,11 @@
 
 Planty is an online marketplace web application where users can register and post plant ads. The project is my first non-tutorial Django application.
 
-The project was developed on Windows OS with Python 3.9.5
+It was developed on Windows OS with Python 3.9.5
 
 ## Requirements:
 - Python 3.0 or newer verison
-- Python requirements are listed in * *requirements.txt* * file
+- Python requirements are listed in the [requirements](requirements.txt) file
 
 ## Installation:
 To run the project for the first time run the following:
@@ -24,7 +24,6 @@ python -m venv <venv_name>
 pip install -r /<path_to_the_file>/requirements.txt
 
 # Migrate database
-python manage.py makemigrations
 python manage.py migrate
 
 # Run the local server
@@ -33,15 +32,16 @@ python manage.py runserver
 
 ## Features:
 - Landing page
-
-![Alt Text](readme/landing_page.gif)
-
+![Landing page](readme/landing_page.gif)
 - Registration and login
 - CRUD operations for plant ads
 - Basic search and filtering of results
+![Explore page](readme/explore.gif)
 - Profile update
 - User reviews
+![Reviews page](readme/reviews.gif)
 - User messages
+![Messages page](readme/messages.gif)
 
 ## Future work:
 - Reset password
