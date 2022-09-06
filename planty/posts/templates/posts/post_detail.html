@@ -13,6 +13,7 @@
 
         <div class="col-sm-6 post-detail-data-section">
             <div class="product-title">{{ post.title }}</div>
+            <div class="post-price">{{ post.price}}€</div>
             <a href="{% url 'view_profile' post.user.pk %}" class="green-link">
                 <div class="post-author-username">{{ post.user }}</div>
             </a>
