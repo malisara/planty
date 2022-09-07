@@ -371,8 +371,18 @@ a>.profile-pic {
 .post-description {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 1.1rem;
+    margin-top: 1.5rem;
     padding: 1rem 2rem;
     font-weight: 300;
+}
+
+.post-price {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 1rem;
+    color: var(--plant-green);
 }
 
 /* Explore Sidebar */
